@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # _*_ coding: utf-8 _*_
-
 import sys
 import syslog
 import time
@@ -13,6 +12,7 @@ import inspect
 class Hcron:
     # version number
     VERSION = '0.1.0'
+    print VERSION
 
     # default file paths
     DEF_CONF_FILE = '/etc/Hcron/Hcron.conf'
