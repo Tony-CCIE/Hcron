@@ -20,9 +20,9 @@ class TestSequenceFunctions(unittest.TestCase):
         output = self._run_with(['--version'])
         self.assertEqual('Hcron %s' % self.progversion, output)
 
-    # def test_help(self):
-    #     output = self._except_with(['--help'])
-    #     self.assertEqual(self.usage, output.strip())
+    def test_help(self):
+        output = self._except_with(['--help'])
+        self.assertEqual(self.usage, output.strip())
     #
     # def test_generate(self):
     #     if os.path.isfile(self.statepath):
@@ -76,14 +76,14 @@ class TestSequenceFunctions(unittest.TestCase):
 
         return output.strip()
 
-    # def _except_with(self, args):
-    #     p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    #     output = p.communicate()[0]
-    #
-    #     if p.returncode == 0:
-    #         self.fail('Returned 0 unexpectedly (should be non-zero): %s' % output)
-    #
-    #     return output.strip()
+    def _except_with(self, args):
+        p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        output = p.communicate()[0]
+
+        if p.returncode == 0:
+            self.fail('Returned 0 unexpectedly (should be non-zero): %s' % output)
+
+        return output.strip()
 
 if __name__ == '__main__':
     unittest.main()
