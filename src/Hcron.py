@@ -32,7 +32,7 @@ class Hcron:
             if opt == '--help':
                 self.usage()
             if opt == '--version':
-                print "Hrcon %s" % self.VERSION
+                print "Hcron %s" % self.VERSION
                 sys.exit(0)
 
         # attempt loading config & opening syslog
@@ -46,9 +46,7 @@ class Hcron:
                     f = open(self.config.get('default', 'state_file'), 'w')
                     f.write(self.config.get('default', 'default_state'))
                     f.close()
-                    self.write_syslog('cluster=%s state=%s status=generate file=%s' % (
-                    self.config.get('default', 'cluster_name'), self.config.get('default', 'default_state'),
-                    self.config.get('default', 'state_file')))
+                    self.write_syslog('cluster=%s state=%s status=generate file=%s' % (self.config.get('default', 'cluster_name'), self.config.get('default', 'default_state'),self.config.get('default', 'state_file')))
                 except IOError, e:
                     self.warn("failed to generate state file '%s' : %s" % (self.config.get('default', 'state_file'), e.strerror))
                     sys.exit(1)
@@ -64,8 +62,7 @@ class Hcron:
             sys.exit(0)
 
         start = time.clock()
-        self.write_syslog("cluster=%s state=active status=start cmd=%s" % (
-        self.config.get('default', 'cluster_name'), ' '.join(self.args)))
+        self.write_syslog("cluster=%s state=active status=start cmd=%s" % (self.config.get('default', 'cluster_name'), ' '.join(self.args)))
 
         rc = os.system("nice -n %s %s" % (self.config.get('default', 'nice_level'), ' '.join(self.args)))
 
