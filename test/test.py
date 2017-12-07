@@ -3,7 +3,6 @@
 
 import unittest
 import sys
-import time
 import subprocess
 import os.path
 
@@ -13,7 +12,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def setUp(self):
         self.cwd = os.path.dirname(os.path.abspath(__file__))
         self.progname = self.cwd+'/../src/Hcron.py'
-        self.progversion = '0.2.0'
+        self.progversion = '0.1.0'
         self.statepath = '/tmp/Hcron.state'
         self.usage = "Usage:\nHcron.py [--help] [--version] [--generate] [--conf file] command [args]"
 
@@ -67,7 +66,7 @@ class TestSequenceFunctions(unittest.TestCase):
     #
     # def _generate_with_conf(self, confname):
     #     self._run_with(['--conf', self.cwd+'/%s.conf' % confname, '--generate'])
-    # 
+    #
     def _run_with(self, args):
         p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         output = p.communicate()[0]
