@@ -12,7 +12,6 @@ import inspect
 class Hcron:
     # version number
     VERSION = '0.1.0'
-    print VERSION
 
     # default file paths
     DEF_CONF_FILE = '/etc/Hcron/Hcron.conf'
