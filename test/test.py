@@ -23,20 +23,20 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_help(self):
         output = self._except_with(['--help'])
         self.assertEqual(self.usage, output.strip())
-    #
-    # def test_generate(self):
-    #     if os.path.isfile(self.statepath):
-    #         os.remove(self.statepath)
-    #
-    #     self._generate_with_conf('passive')
-    #
-    #     if not os.path.isfile(self.statepath):
-    #         self.fail('Should have created state file at %s' % self.statepath)
-    #
-    #     f = open(self.statepath)
-    #     statecontent = f.read()
-    #     f.close()
-    #     self.assertEqual('passive', statecontent.strip())
+
+    def test_generate(self):
+        if os.path.isfile(self.statepath):
+            os.remove(self.statepath)
+
+        self._generate_with_conf('passive')
+
+        if not os.path.isfile(self.statepath):
+            self.fail('Should have created state file at %s' % self.statepath)
+
+        f = open(self.statepath)
+        statecontent = f.read()
+        f.close()
+        self.assertEqual('passive', statecontent.strip())
     #
     # def test_run_passive(self):
     #     self._generate_with_conf('passive')
@@ -64,9 +64,9 @@ class TestSequenceFunctions(unittest.TestCase):
     #     output = self._except_with(['--conf', self.cwd+'/missing.conf', 'echo', 'foo'])
     #     self.assertTrue(output.find("warning: failed to open config file '%s/missing.conf' : No such file or directory" % self.cwd))
     #
-    # def _generate_with_conf(self, confname):
-    #     self._run_with(['--conf', self.cwd+'/%s.conf' % confname, '--generate'])
-    #
+    def _generate_with_conf(self, confname):
+        self._run_with(['--conf', self.cwd+'/%s.conf' % confname, '--generate'])
+
     def _run_with(self, args):
         p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         output = p.communicate()[0]
