@@ -67,16 +67,16 @@ class TestSequenceFunctions(unittest.TestCase):
     #
     # def _generate_with_conf(self, confname):
     #     self._run_with(['--conf', self.cwd+'/%s.conf' % confname, '--generate'])
-    #
-    # def _run_with(self, args):
-    #     p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    #     output = p.communicate()[0]
-    #
-    #     if p.returncode != 0:
-    #         self.fail('Returned %s unexpectedly: %s' % (p.returncode, output))
-    #
-    #     return output.strip()
-    #
+    # 
+    def _run_with(self, args):
+        p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        output = p.communicate()[0]
+
+        if p.returncode != 0:
+            self.fail('Returned %s unexpectedly: %s' % (p.returncode, output))
+
+        return output.strip()
+
     # def _except_with(self, args):
     #     p = subprocess.Popen(['python', self.progname] + args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     #     output = p.communicate()[0]
